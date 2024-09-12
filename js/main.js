@@ -23,6 +23,37 @@ do {
     }
 } while (continuar === 'si');
 
+// function mostrarDetallesProducto(productoElegido) {
+//     const productosDisponibles = postres.map(item => item.producto).join(", ");
+    
+//     while (true) {
+//         const producto = postres.find(item => item.producto.toLowerCase() === productoElegido.toLowerCase());
+        
+//         if (producto) {
+//             let saborElegido = prompt("Producto: " + producto.producto + "\nSabor: " + producto.sabor.join(", ") + "\nPrecio: $" + 
+//             producto.precio + "\n\nElija un sabor:");
+
+//             while (!producto.sabor.includes(saborElegido.toLowerCase())) {
+//                 saborElegido = prompt("Sabor no válido. Elija uno de los siguientes sabores: \n" + producto.sabor.join(", "));
+//             }
+
+//             let cantidad = prompt("Elegir cantidad del producto");
+            
+//             while (isNaN(cantidad) || cantidad <= 0) {
+//                 cantidad = prompt("Cantidad no válida. Por favor, ingresa un número mayor que 0.");
+//             }
+//             while {
+//             let productoAlCarrito = prompt("Desea añadir el siguiente producto al carrito? \n(" + cantidad + ") " + producto.producto + " de " + saborElegido + " - $" + (cantidad*producto.precio));
+//             }
+//             break;
+
+//         } else {
+//             productoElegido = prompt("Producto no encontrado. Elija uno de los siguientes productos: \n" + productosDisponibles);
+//         }
+//     }
+// }
+
+
 function mostrarDetallesProducto(productoElegido) {
     const productosDisponibles = postres.map(item => item.producto).join(", ");
     
@@ -30,11 +61,35 @@ function mostrarDetallesProducto(productoElegido) {
         const producto = postres.find(item => item.producto.toLowerCase() === productoElegido.toLowerCase());
         
         if (producto) {
-            alert("Producto: " + producto.producto + "\nSabor: " + producto.sabor.join(", ") + "\nPrecio: $" + producto.precio);
+            let saborElegido = prompt("Producto: " + producto.producto + "\nSabor: " + producto.sabor.join(", ") + "\nPrecio: $" + 
+            producto.precio + "\n\nElija un sabor:");
+
+            while (!producto.sabor.includes(saborElegido.toLowerCase())) {
+                saborElegido = prompt("Sabor no válido. Elija uno de los siguientes sabores: \n" + producto.sabor.join(", "));
+            }
+
+            let cantidad = prompt("Elegir cantidad del producto");
+            
+            while (isNaN(cantidad) || cantidad <= 0) {
+                cantidad = prompt("Cantidad no válida. Por favor, ingresa un número mayor que 0.");
+            }
+            
+            let añadirAlCarrito = prompt("Desea añadir el siguiente producto al carrito? \n(" + cantidad + ") " + producto.producto + " de " + saborElegido + " - $" + (cantidad * producto.precio));
+            
+            while (añadirAlCarrito.toLowerCase() !== 'si' && añadirAlCarrito.toLowerCase() !== 'no') {
+                añadirAlCarrito = prompt("Desea añadir el siguiente producto al carrito? \n(" + cantidad + ") " + producto.producto + " de " + saborElegido + " - $" + (cantidad * producto.precio) +
+                "\n\nRespuesta inválida. Escriba 'si' para añadir o 'no' para cancelar.");
+            }
+
+            if (añadirAlCarrito.toLowerCase() === 'si') {
+                alert("El producto ha sido añadido al carrito.");
+            } else {
+                alert("El producto no ha sido añadido al carrito.");
+            }
+
             break;
         } else {
             productoElegido = prompt("Producto no encontrado. Elija uno de los siguientes productos: \n" + productosDisponibles);
         }
     }
-
 }
